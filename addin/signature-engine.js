@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const SIGNATURE_DATA_URL = "signatures.json";
+  const SIGNATURE_DATA_URL = "https://jorgecastelan-svg.github.io/tege-signature-assets/addin/signatures.json";
 
   let cachedData = null;
 
