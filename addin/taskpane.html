@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>TeGe Signatur</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script src="signature-engine.js"></script>
+  <script src="taskpane.js"></script>
+</head>
+<body style="margin:0; padding:16px; font-family:Outfit, 'Segoe UI', Arial, sans-serif; color:#003f2d;">
+  <h1 style="margin:0 0 8px 0; font-size:20px; line-height:26px;">TeGe Signatur</h1>
+  <p id="status" style="margin:0 0 12px 0; font-size:13px; line-height:18px; color:#4c665b;">Lade Signaturen...</p>
+
+  <label for="signatureSelect" style="display:block; margin:0 0 5px 0; font-size:12px; line-height:16px; font-weight:700;">Signatur</label>
+  <select id="signatureSelect" style="box-sizing:border-box; width:100%; margin:0 0 12px 0; padding:8px; border:1px solid #d7e6dc; color:#003f2d; font-size:13px;"></select>
+
+  <button id="insertButton" type="button" style="width:100%; padding:9px 10px; border:0; background:#76b82a; color:#ffffff; font-size:13px; font-weight:700; cursor:pointer;">Signatur einfügen</button>
+
+  <p style="margin:14px 0 0 0; font-size:11px; line-height:16px; color:#4c665b;">Beim Erstellen einer neuen E-Mail versucht das Add-in automatisch die passende Signatur anhand der Absenderadresse einzusetzen.</p>
+</body>
+</html>
