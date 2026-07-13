@@ -57,6 +57,11 @@
     return data.signatures.find((item) => normalizeEmail(item.email) === normalized) || null;
   }
 
+  function findSignatureById(data, id) {
+    const normalized = String(id || "").trim().toLowerCase();
+    return data.signatures.find((item) => String(item.id || "").trim().toLowerCase() === normalized) || null;
+  }
+
   function findDefaultSignature(data) {
     return findSignature(data, data.defaultEmail) || data.signatures[0] || null;
   }
@@ -99,6 +104,18 @@
     return signature;
   }
 
+  async function insertSignatureById(id, options) {
+    const data = await loadSignatureData();
+    const signature = findSignatureById(data, id) || (options && options.useDefault ? findDefaultSignature(data) : null);
+
+    if (!signature) {
+      throw new Error(`Keine Signatur für ${id || "diese Auswahl"} gefunden.`);
+    }
+
+    await setSignatureHtml(signature.html);
+    return signature;
+  }
+
   async function insertSignatureForCurrentFrom(options) {
     const email = await getFromEmail();
     return insertSignatureByEmail(email, options);
@@ -109,8 +126,10 @@
     getMailboxEmail,
     loadSignatureData,
     findSignature,
+    findSignatureById,
     findDefaultSignature,
     insertSignatureByEmail,
+    insertSignatureById,
     insertSignatureForCurrentFrom,
   };
 })();

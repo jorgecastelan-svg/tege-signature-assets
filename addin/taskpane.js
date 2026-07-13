@@ -22,21 +22,22 @@
 
     data.signatures.forEach((signature) => {
       const option = document.createElement("option");
-      option.value = signature.email;
+      option.value = signature.id;
       option.textContent = optionLabel(signature);
+      option.setAttribute("data-email", signature.email);
       select.appendChild(option);
     });
 
     const match = window.TegeSignature.findSignature(data, fromEmail) || window.TegeSignature.findDefaultSignature(data);
     if (match) {
-      select.value = match.email;
+      select.value = match.id;
     }
 
     setStatus(`Absender erkannt: ${fromEmail || "unbekannt"}`);
 
     byId("insertButton").addEventListener("click", async () => {
       try {
-        const signature = await window.TegeSignature.insertSignatureByEmail(select.value, { useDefault: true });
+        const signature = await window.TegeSignature.insertSignatureById(select.value, { useDefault: true });
         setStatus(`Eingefügt: ${signature.name}`);
       } catch (error) {
         setStatus(error.message, true);
